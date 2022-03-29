@@ -1,6 +1,7 @@
 public interface AccountNP {
-    float setIncome(float income);
-    float setExpenses(float expenses);
-}
 
+    void setIncome(double income);
+
+    void setExpenses(double expenses);
+}
 

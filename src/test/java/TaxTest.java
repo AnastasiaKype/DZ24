@@ -1,9 +1,9 @@
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 public class TaxTest {
-
 
     @ParameterizedTest
     @CsvSource(value = {
@@ -15,18 +15,13 @@ public class TaxTest {
             "0,0",
             "25, 25",
             "-258,0"
-
-
     })
-    public void setIncomeTaxTestTest (float newIncome, float expected) {
-        TaxCalculation account = new TaxCalculation();
+    public void setIncomeTaxTestTest(double newIncome, double expected) {
+        TaxCalculate account = new TaxCalculate();
         account.setIncome(newIncome);
 
         double actual = account.getIncome();
         Assertions.assertEquals(expected, actual);
-
-
-
     }
 
     @ParameterizedTest
@@ -38,14 +33,13 @@ public class TaxTest {
             "-258,-256,0"
 
     })
-    public void setExpensesTaxTest(float newIncome, float newExpenses, float expected) {
-        TaxCalculation account = new TaxCalculation();
+    public void setExpensesTaxTest(double newIncome, double newExpenses, double expected) {
+        TaxCalculate account = new TaxCalculate();
         account.setIncome(newIncome);
         account.setExpenses(newExpenses);
 
         double actual = account.getExpenses();
         Assertions.assertEquals(expected, actual);
-
     }
 
     @ParameterizedTest
@@ -53,23 +47,23 @@ public class TaxTest {
             "0,0,0",
             "500,500,0",
             "-500, 0,0",
-            "500,-500,0",
-            "268,-587,0",
+            "500,-500,75",
+            "268,-587,40.2",
             "1000,500,75",
             "-154,-158,0",
-            "25.25,-68,0",
-            "-59.25,698,0"
+            "25.25,-68,3.7875",
+            "-59.25,698,0",
+            "150,250,0"
 
 
     })
-    public void ExpensesTaxTest(float newIncome, float newExpenses, float expected) {
-        TaxCalculation account = new TaxCalculation();
+    public void ExpensesTaxTest(double newIncome, double newExpenses, double expected) {
+        TaxCalculate account = new TaxCalculate();
         account.setIncome(newIncome);
         account.setExpenses(newExpenses);
 
-        float actual = account.expensesTax( account.setIncome(newIncome), account.setExpenses(newExpenses));
+        double actual = account.expensesTax15();
         Assertions.assertEquals(expected, actual);
-
     }
 
     @ParameterizedTest
@@ -82,14 +76,16 @@ public class TaxTest {
 
 
     })
-    public void incomeTaxTest(float newIncome, float expected, float income) {
-        TaxCalculation account = new TaxCalculation();
+    public void incomeTaxTest(double newIncome, double expected, double income) {
+        TaxCalculate account = new TaxCalculate();
         account.setIncome(newIncome);
 
 
-        float actual = account.incomeTax(account.setIncome(newIncome));
+        double actual = account.incomeTax6();
         Assertions.assertEquals(expected, actual);
 
     }
 
 }
+
+
